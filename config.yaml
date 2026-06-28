@@ -1,0 +1,43 @@
+# =====================================================================
+# Configuration for the Global Warming Detection pipeline
+# All paths are relative to the project root.
+# =====================================================================
+
+paths:
+  raw_global:      "data/raw/GlobalTemperatures.csv"
+  # Optional Berkeley Earth companion files. The pipeline runs fully
+  # without them; regional analysis is skipped gracefully if absent.
+  raw_country:     "data/raw/GlobalLandTemperaturesByCountry.csv"
+  raw_city:        "data/raw/GlobalLandTemperaturesByMajorCity.csv"
+  processed_dir:   "data/processed"
+  figures_dir:     "reports/figures"
+  metrics_dir:     "reports/metrics"
+
+series:
+  # Land-only average is available from 1750; land+ocean only from 1850.
+  land_col:            "LandAverageTemperature"
+  land_unc_col:        "LandAverageTemperatureUncertainty"
+  land_ocean_col:      "LandAndOceanAverageTemperature"
+  land_ocean_unc_col:  "LandAndOceanAverageTemperatureUncertainty"
+  land_ocean_start:    1850   # hard floor for any ocean-inclusive analysis
+
+baseline:
+  # Standard climatological baseline for anomaly computation.
+  start: 1951
+  end:   1980
+
+analysis:
+  end_year:           2015   # last full-coverage year in Berkeley Earth
+  interpolation_limit: 3     # max consecutive monthly gap to interpolate
+  alpha:              0.05    # significance level
+  # Sanity anchor windows (combined land+ocean mean rise ~0.57 C)
+  anchor_early: [1850, 1899]
+  anchor_late:  [1965, 2014]
+
+regional:
+  min_years:          50      # minimum years of coverage to include a region
+  turkey_cities:      ["Istanbul", "Ankara", "Izmir"]
+  top_n_ranking:      15
+
+viz:
+  dpi: 300
