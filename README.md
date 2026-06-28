@@ -101,7 +101,7 @@ Ankara (continental interior) warms fastest; the two coastal cities (Istanbul, �
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/MelihOrel/global-warming-detection.git
+git clone https://github.com/MelihOrel/Statistical-Detection-Quantification-of-Global-Warming.git
 cd global-warming-detection
 python -m venv .venv && source .venv/bin/activate   # optional
 pip install -r requirements.txt
